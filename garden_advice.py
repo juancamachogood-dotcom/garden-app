@@ -1,33 +1,37 @@
-# Hardcoded values for the season and plant type
-season = input("Enter a season (summer or winter): ").strip().lower()
-plant_type = input(
-    "Enter a plant type (flower or vegetable): "
-).strip().lower()
+"""Provide seasonal gardening advice for flowers and vegetables."""
 
-# Variable to hold gardening advice
-advice = ""
+SEASON_ADVICE = {
+    "summer": "Water your plants regulary and provide some shade.",
+    "winter": "Protect your plants from frost with covers.",
+}
 
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
+PLANT_ADVICE = {
+    "flower": "Use fertiliser to encourage blooms.",
+    "vegetable": "Keep an eye out for pests!",
+}
 
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
 
-# Print the generated advice
-print(advice)
+def get_gardening_advice(season, plant_type):
+    """Return advice for the selected season and plant type."""
+    season_tip = SEASON_ADVICE.get(season, "No advice for this season.")
+    plant_tip = PLANT_ADVICE.get(
+        plant_type, "No advice for this type of plant."
+    )
 
-# TODO: Examples of possible features to add:
-# - Add detailed comments explaining each block of code.
-# - Refactor the code into functions for better readability and modularity.
-# - Store advice in a dictionary for multiple plants and seasons.
-# - Recommend plants based on the entered season.
+    return f"{season_tip}\n{plant_tip}"
+
+
+def main():
+    """Ask the user for choices and print gardening advice."""
+    season = input("Enter a season (summer or winter): ").strip().lower()
+    plant_type = input(
+        "Enter a plant type (flower or vegetable): "
+    ).strip().lower()
+
+    advice = get_gardening_advice(season, plant_type)
+    print("\nYour gardening advice:")
+    print(advice)
+
+
+if __name__ == "__main__":
+    main()
